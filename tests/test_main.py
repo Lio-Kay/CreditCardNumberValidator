@@ -36,6 +36,6 @@ def test_sort_operations():
 
 
 def test_visualize_operations(capfd):
-    main.visualize_operations(main.get_data_from_file('data_to_visualize_operations.json'))
+    main.visualize_operations(main.get_data_from_file('data_to_test_visualize_operations.json'))
     out, err = capfd.readouterr()
     assert out == '07.12.2019 Перевод организации\nVisa Classic 2842 87** **** 9012 -> Счет **3655\n48150.39 USD\n\n'
