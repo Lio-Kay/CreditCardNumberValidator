@@ -1,9 +1,15 @@
 [{
-    "test id": 0,
-    "test state": "FAILED",
-    "test date": "32.12.1999",
-    "test operationAmount": {
-      "amount": "-99.43",
-      "currency": {
-        "name": "руб.",
-        "code": "RUB"}}}]
+        "id": 114832369,
+        "state": "EXECUTED",
+        "date": "2019-12-07T06:17:14.634890",
+        "operationAmount": {
+            "amount": "48150.39",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        },
+        "description": "Перевод организации",
+        "from": "Visa Classic 2842878893689012",
+        "to": "Счет 35158586384610753655"
+    }]
