@@ -1,0 +1,9 @@
+[{
+    "test id": 0,
+    "test state": "FAILED",
+    "test date": "32.12.1999",
+    "test operationAmount": {
+      "amount": "-99.43",
+      "currency": {
+        "name": "руб.",
+        "code": "RUB"}}}]
