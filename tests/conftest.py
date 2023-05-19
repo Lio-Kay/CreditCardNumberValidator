@@ -2,7 +2,7 @@ import pytest
 
 
 @pytest.fixture
-def data_to_test_get_data_from_file__to_test_visualize_operations():
+def testdata_get_data_from_file__visualize_operations():
     return [{
         "id": 114832369,
         "state": "EXECUTED",
@@ -21,7 +21,7 @@ def data_to_test_get_data_from_file__to_test_visualize_operations():
 
 
 @pytest.fixture
-def data_to_test_validate_data_in():
+def testdata_validate_data_in():
     return [{
         "id": 587085106,
         "state": "EXECUTED",
@@ -56,7 +56,7 @@ def data_to_test_validate_data_in():
 
 
 @pytest.fixture
-def data_to_test_validate_data_out():
+def testdata_validate_data_out():
     return [{"id": 587085106,
              "state": "EXECUTED",
              "date": "2018-03-23T10:45:06.972075",
@@ -88,7 +88,7 @@ def data_to_test_validate_data_out():
 
 
 @pytest.fixture
-def data_to_test_get_executed_operations_in():
+def testdata_get_executed_operations_in():
     return [{
         "id": 863064926,
         "state": "EXECUTED",
@@ -121,7 +121,7 @@ def data_to_test_get_executed_operations_in():
 
 
 @pytest.fixture
-def data_to_test_get_executed_operations_out():
+def testdata_get_executed_operations_out():
     return [{
         "id": 863064926,
         "state": "EXECUTED",
@@ -139,7 +139,7 @@ def data_to_test_get_executed_operations_out():
 
 
 @pytest.fixture
-def data_to_test_sort_operations_in():
+def testdata_sort_operations_in():
     return [{
         "id": 147815167,
         "state": "EXECUTED",
@@ -203,7 +203,7 @@ def data_to_test_sort_operations_in():
 
 
 @pytest.fixture
-def data_to_test_sort_operations_out():
+def testdata_sort_operations_out():
     return [
         {
             "id": 782295999,

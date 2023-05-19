@@ -95,4 +95,8 @@ def visualize_operations(data: list) -> None:
 
 
 if __name__ == '__main__':
-    visualize_operations(sort_operations(get_executed_operations(validate_data(get_data_from_file(fixed_path)))))
+    data = get_data_from_file(fixed_path)
+    validated_data = validate_data(data)
+    executed_operations = get_executed_operations(validated_data)
+    sorted_operations = sort_operations(executed_operations)
+    visualize_operations(sorted_operations)
