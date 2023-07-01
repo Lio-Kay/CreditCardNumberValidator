@@ -2,9 +2,9 @@ from utils import main
 
 
 def test_get_data_from_file(testdata_get_data_from_file__visualize_operations):
-    assert main.get_data_from_file('data_to_test_get_data_from_file_1.json') == \
+    assert main.get_data_from_file('test_get_data_from_file_1.json') == \
            testdata_get_data_from_file__visualize_operations
-    assert main.get_data_from_file('data_to_test_get_data_from_file_2.json') == {}
+    assert main.get_data_from_file('test_get_data_from_file_2.json') == {}
 
 
 def test_validate_data(testdata_validate_data_in, testdata_validate_data_out):

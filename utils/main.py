@@ -23,7 +23,7 @@ def validate_data(data: list) -> list:
     for idx, entry in enumerate(data):
         if entry == {}:
             data.pop(idx)
-    return data
+    return validated_data
 
 
 def get_executed_operations(data: list) -> list:
@@ -31,7 +31,7 @@ def get_executed_operations(data: list) -> list:
     :param data: List of valid banking transactions
     :return: List of transactions with executed operations based on 'state' key
     """
-    executed_operations = list(filter(lambda entry: entry['state'] == 'EXECUTED', data))
+    executed_operations: list = list(filter(lambda entry: entry['state'] == 'EXECUTED', data))
     return executed_operations
 
 
@@ -40,42 +40,42 @@ def sort_operations(data: list) -> list:
     :param data: List with executed transactions based on 'state' key
     :return: List sorted by date in descending order
     """
-    sorted_by_date = sorted(data, key=lambda entry: entry['date'], reverse=True)
+    sorted_by_date: list = sorted(data, key=lambda entry: entry['date'], reverse=True)
     return sorted_by_date
 
 
-def visualize_operations(data: list) -> None:
+def visualize_operations(sorted_by_date: list) -> None:
     """
-    :param data: Sorted list of executed transactions based on 'state' key
+    :param sorted_by_date: Sorted list of executed transactions based on 'state' key
     :return: Nothing, prints 5 latest transactions
     """
-    for entry in data[:5]:
+    for entry in sorted_by_date[:5]:
         year, month, day = entry['date'].split('T')[0].split('-')
-        from_info = entry.get('from', '')
-        to_info = entry.get('to', '')
+        from_info: str = entry.get('from', '')
+        to_info: str = entry.get('to', '')
         # using Re to get corresponding 'from' and 'to' data about payment option and card/account number
         try:
-            from_card_type = re.split(pattern='([0-9])', string=from_info)[0].strip()
-            from_card_num = ''.join(re.split(pattern='([0-9])', string=from_info)[1:])
-            to_card_type = re.split(pattern='([0-9])', string=to_info)[0].strip()
-            to_card_num = ''.join(re.split(pattern='([0-9])', string=to_info)[1:])
+            from_card_type: str = re.split(pattern='([0-9])', string=from_info)[0].strip()
+            from_card_num: str = ''.join(re.split(pattern='([0-9])', string=from_info)[1:])
+            to_card_type: str = re.split(pattern='([0-9])', string=to_info)[0].strip()
+            to_card_num: str = ''.join(re.split(pattern='([0-9])', string=to_info)[1:])
         except TypeError:
             pass
         # prettifying the data, hiding full info with '*' and formatting it to be used in print statement
         if from_card_type != 'Счет':
-            from_card_num = f'{from_card_num[:4]} ' \
+            from_card_num: str = f'{from_card_num[:4]} ' \
                             f'{from_card_num[4:6]}** **** {from_card_num[-4:]}'
         else:
-            from_card_num = f'**{from_card_num[-4:]}'
+            from_card_num: str = f'**{from_card_num[-4:]}'
 
         if to_card_type != 'Счет':
-            to_card_num = f'{to_card_num[:4]} ' \
+            to_card_num: str = f'{to_card_num[:4]} ' \
                           f'{to_card_num[4:6]}** **** {to_card_num[-4:]}'
         else:
-            to_card_num = f'**{to_card_num[-4:]}'
+            to_card_num: str = f'**{to_card_num[-4:]}'
 
-        sum_of_trans = entry.get('operationAmount', '').get('amount', '0')
-        currency_of_trans = entry.get('operationAmount', '').get('currency', '').get('name', '')
+        sum_of_trans: str = entry.get('operationAmount', '').get('amount', '0')
+        currency_of_trans: str = entry.get('operationAmount', '').get('currency', '').get('name', '')
         # Printing data in correct format based on the fact whether we have 'from' info or not and
         # whether out coming transaction was received on account or card
         if from_info == '':
@@ -95,8 +95,8 @@ def visualize_operations(data: list) -> None:
 
 
 if __name__ == '__main__':
-    data = get_data_from_file(fixed_path)
-    validated_data = validate_data(data)
-    executed_operations = get_executed_operations(validated_data)
-    sorted_operations = sort_operations(executed_operations)
-    visualize_operations(sorted_operations)
+    raw_data = get_data_from_file(path=fixed_path)
+    validated_data = validate_data(data=raw_data)
+    executed_operations = get_executed_operations(data=validated_data)
+    sorted_operations = sort_operations(data=executed_operations)
+    visualize_operations(sorted_by_date=sorted_operations)
